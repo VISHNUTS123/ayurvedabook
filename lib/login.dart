@@ -59,7 +59,7 @@ class _login1State extends State<login1> {
                     ),
                   ),
                   SizedBox(height: 20,),
-                  CircleAvatar(backgroundImage: AssetImage('images/login.jpg'),radius: 60,),
+                  CircleAvatar(backgroundImage: AssetImage('images/login.jpg'),radius: 40,),
                   SizedBox(
                     height: 50,
                   ),
