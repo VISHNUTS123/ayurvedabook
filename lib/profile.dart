@@ -1,4 +1,6 @@
+import 'package:ayurvedabook/book.dart';
 import 'package:ayurvedabook/login.dart';
+import 'package:ayurvedabook/treatementdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/main.dart';
 import 'package:ayurvedabook/diseasedetailspost.dart';
@@ -27,23 +29,41 @@ class _profile1State extends State<profile1> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            Container(height: 130,
-              child: const DrawerHeader(
-                decoration: BoxDecoration(
-
-                  color: Colors.greenAccent,
-                ),
-                child: Text('Have a Nice Day',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
+            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
+                child: Text('Vishnu',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
+              Icons.person,
+              size: 50,
+            ),),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        profile1(), // Replace NextScreen with the screen you want to navigate to
+                  ),
+                );
+              },
+              child: ListTile(
+                leading: Icon(Icons.home),
+                title: const Text('Home'),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: const Text('Home'),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          WelcomePage() // Replace NextScreen with the screen you want to navigate to
+                  ),
+                );
+              },
+              child: ListTile(
+                leading: Icon(Icons.logout),
+                title: const Text('Logout'),
+              ),
             ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: const Text('Log Out'),
-            )
           ],
         ),
       ),
@@ -137,7 +157,10 @@ class _profile1State extends State<profile1> {
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => tdetails()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -196,7 +219,10 @@ class _profile1State extends State<profile1> {
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Booking()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(

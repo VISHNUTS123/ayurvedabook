@@ -12,10 +12,10 @@ class complaintnew extends StatefulWidget {
 class _complaintnewState extends State<complaintnew> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold( appBar: AppBar(
+    return Scaffold(  appBar: AppBar(
       centerTitle: true,
       title: const Text(
-        'What was wrong with us',
+        'New Complaint',
       ),
       backgroundColor: const Color(0xff764abc),
     ),
@@ -23,18 +23,11 @@ class _complaintnewState extends State<complaintnew> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            Container(
-              height: 130,
-              child: const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.greenAccent,
-                ),
-                child: Text(
-                  'Have a Nice Day',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                ),
-              ),
-            ),
+            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
+                child: Text('Vishnu',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
+              Icons.person,
+              size: 50,
+            ),),
             GestureDetector(
               onTap: () {
                 Navigator.push(

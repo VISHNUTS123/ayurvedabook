@@ -1,23 +1,23 @@
 import 'package:ayurvedabook/main.dart';
 import 'package:ayurvedabook/profile.dart';
-import 'package:ayurvedabook/newcomplaints.dart';
+import 'package:ayurvedabook/doctorlist.dart';
 import 'package:flutter/material.dart';
 
-class oldcomplaints extends StatefulWidget {
-  const oldcomplaints({super.key});
+class Booking extends StatefulWidget {
+  const Booking({super.key});
 
   @override
-  State<oldcomplaints> createState() => _oldcomplaintsState();
+  State<Booking> createState() => _BookingState();
 }
 
-class _oldcomplaintsState extends State<oldcomplaints> {
+class _BookingState extends State<Booking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Complaints and Responses',
+          'Book an Appointment',
         ),
         backgroundColor: const Color(0xff764abc),
       ),
@@ -64,42 +64,44 @@ class _oldcomplaintsState extends State<oldcomplaints> {
         ),
       ),
       body: Center(
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child:ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      leading: const Icon(Icons.list),
-                      trailing: const Text(
-                        "View response",
-                        style: TextStyle(color: Colors.green, fontSize: 15),
-                      ),
-                      title: Text("List item ${index + 1}",style: TextStyle(fontWeight: FontWeight.bold),),
-                      subtitle: Text('Description'),
-                    );
-                  }),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding:EdgeInsets.only(bottom: 20,right: 20),
-                child: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                          complaintnew()// Replace NextScreen with the screen you want to navigate to
-                      ),
-                    );
-                  },
-                  child: Icon(Icons.add),
+
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Search',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: doctors.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    child: ListTile(
+                      leading: const Icon(Icons.health_and_safety_outlined),
+                      trailing: const Text(
+                        "BOOK",
+                        style: TextStyle(color: Colors.green, fontSize: 15),
+                      ),
+                      title: Text(doctors[index]),
+                      subtitle: Text(specailization[index]),
+                    ),
+                  );
+                },
+              ),
+            )
+
+
+
+
           ],
         ),
       ),

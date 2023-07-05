@@ -12,30 +12,22 @@ class postdetails extends StatefulWidget {
 class _postdetailsState extends State<postdetails> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'LET US KNOW',
-        ),
-        backgroundColor: const Color(0xff764abc),
+    return Scaffold( appBar: AppBar(
+      centerTitle: true,
+      title: const Text(
+        'Let us Know',
       ),
+      backgroundColor: const Color(0xff764abc),
+    ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            Container(
-              height: 130,
-              child: const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.greenAccent,
-                ),
-                child: Text(
-                  'Have a Nice Day',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                ),
-              ),
-            ),
+            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
+                child: Text('Vishnu',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
+              Icons.person,
+              size: 50,
+            ),),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -58,7 +50,7 @@ class _postdetailsState extends State<postdetails> {
                   MaterialPageRoute(
                       builder: (context) =>
                           WelcomePage() // Replace NextScreen with the screen you want to navigate to
-                      ),
+                  ),
                 );
               },
               child: ListTile(

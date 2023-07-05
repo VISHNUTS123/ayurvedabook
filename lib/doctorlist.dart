@@ -1,6 +1,7 @@
 import 'package:ayurvedabook/profile.dart';
 import 'package:ayurvedabook/main.dart';
 import 'package:flutter/material.dart';
+import 'package:ayurvedabook/doctorlist.dart';
 
 List<String> doctors = [
   'Dr.Vinay',
@@ -9,14 +10,18 @@ List<String> doctors = [
   'Dr. Ajay ',
   'Dr. Paul ',
 
+
+
+
 ];
 
 List<String> specailization =[
-  'Orthopedics'
-  'Pediatrics'
-  'Internal medicine'
-  'Dermatology'
-  'Psychiatry'
+  'Orthopedics',
+  'Pediatrics',
+  'Internal medicine',
+  'Dermatology',
+  'Psychiatry',
+
 ];
 
 
@@ -43,18 +48,11 @@ class _ListPageState extends State<ListPage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            Container(
-              height: 130,
-              child: const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.greenAccent,
-                ),
-                child: Text(
-                  'Have a Nice Day',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                ),
-              ),
-            ),
+            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
+                child: Text('Vishnu',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
+              Icons.person,
+              size: 50,
+            ),),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -89,7 +87,7 @@ class _ListPageState extends State<ListPage> {
         ),
       ),
       body: Center(
-        child: SingleChildScrollView(
+
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -105,14 +103,23 @@ class _ListPageState extends State<ListPage> {
                   ),
                 ),
 
-              ListView.builder(
-                itemCount: doctors.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(doctors[index]),
-                    subtitle: Text(specailization[index]),
-                  );
-                },
+              Expanded(
+                child: ListView.builder(
+                  itemCount: doctors.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      child: ListTile(
+                        leading: const Icon(Icons.health_and_safety_outlined),
+                        trailing: const Text(
+                          "Details",
+                          style: TextStyle(color: Colors.green, fontSize: 15),
+                        ),
+                        title: Text(doctors[index]),
+                        subtitle: Text(specailization[index]),
+                      ),
+                    );
+                  },
+                ),
               )
 
 
@@ -121,7 +128,7 @@ class _ListPageState extends State<ListPage> {
             ],
           ),
         ),
-      ),
+
 
     );
   }
