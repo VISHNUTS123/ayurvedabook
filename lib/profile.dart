@@ -1,6 +1,9 @@
 import 'package:ayurvedabook/login.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/main.dart';
+import 'package:ayurvedabook/diseasedetailspost.dart';
+import 'package:ayurvedabook/complaints.dart';
+import 'package:ayurvedabook/doctorlist.dart';
 
 class profile1 extends StatefulWidget {
   const profile1({super.key});
@@ -103,7 +106,10 @@ class _profile1State extends State<profile1> {
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ListPage()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -159,7 +165,10 @@ class _profile1State extends State<profile1> {
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () { Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => postdetails()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -216,7 +225,10 @@ class _profile1State extends State<profile1> {
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () { Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>oldcomplaints()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
