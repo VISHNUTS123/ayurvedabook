@@ -2,6 +2,7 @@ import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/Registration.dart';
 import 'package:ayurvedabook/profile.dart';
+import 'doctor/doctorlanding.dart';
 
 class login1 extends StatefulWidget {
   const login1({super.key});
@@ -11,22 +12,47 @@ class login1 extends StatefulWidget {
 }
 
 class _login1State extends State<login1> {
+  final TextEditingController _passwordController = TextEditingController();
+
+  void _login() {
+    final enteredPassword = _passwordController.text;
+    if (enteredPassword == '123') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => profile1()),
+      );
+    } else if (enteredPassword == '456') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DoctorLanding()),
+      );
+    } else {
+      // Password doesn't match, handle the error
+    }
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
-        gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-        Colors.green,
-        Colors.lightGreenAccent,
-          Colors.lightGreen,
-          Colors.yellow,
-        ],
-    ),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.green,
+              Colors.lightGreenAccent,
+              Colors.lightGreen,
+              Colors.yellow,
+            ],
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -58,12 +84,24 @@ class _login1State extends State<login1> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20,),
-                  CircleAvatar(backgroundImage: AssetImage('images/login.jpg'),radius: 40,),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CircleAvatar(
+                    backgroundImage: AssetImage('images/login.jpg'),
+                    radius: 40,
+                  ),
                   SizedBox(
                     height: 50,
                   ),
-                  Align(alignment: Alignment.centerLeft, child: Text('Email', style: TextStyle(fontFamily: 'Caprasimo', fontWeight: FontWeight.bold),)),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Email',
+                        style: TextStyle(
+                            fontFamily: 'Caprasimo',
+                            fontWeight: FontWeight.bold),
+                      )),
                   SizedBox(
                     height: 5,
                   ),
@@ -76,11 +114,19 @@ class _login1State extends State<login1> {
                   SizedBox(
                     height: 20,
                   ),
-                  Align(alignment: Alignment.centerLeft, child: Text('Password', style: TextStyle(fontFamily: 'Caprasimo', fontWeight: FontWeight.bold),)),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Password',
+                        style: TextStyle(
+                            fontFamily: 'Caprasimo',
+                            fontWeight: FontWeight.bold),
+                      )),
                   SizedBox(
                     height: 5,
                   ),
                   TextField(
+                    controller: _passwordController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -92,10 +138,7 @@ class _login1State extends State<login1> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => profile1()));
+                   _login();
                     },
                     child: Container(
                       width: 300,
@@ -105,8 +148,15 @@ class _login1State extends State<login1> {
                         border: Border.all(),
                         color: Colors.white,
                       ),
-                      child: Center(child: Text('Login', style: TextStyle(fontFamily: ' Caprasimo',fontWeight: FontWeight.bold,fontSize: 30,
-                      ),)),
+                      child: Center(
+                          child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontFamily: ' Caprasimo',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                        ),
+                      )),
                     ),
                   ),
                   SizedBox(
@@ -118,16 +168,19 @@ class _login1State extends State<login1> {
                       children: [
                         Text('Dont have an account ? '),
                         TextButton(
-                            onPressed: () {   Navigator.push(context, MaterialPageRoute(builder: (context)=>Registration()));
-
-                            },
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Registration()));
+                          },
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
                                 fontFamily: 'Caprasimo',
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ],
                     ),

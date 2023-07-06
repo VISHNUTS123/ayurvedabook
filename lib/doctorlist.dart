@@ -108,6 +108,9 @@ class _ListPageState extends State<ListPage> {
                   itemCount: doctors.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
+                      onTap: (){
+
+                      },
                       child: ListTile(
                         leading: const Icon(Icons.health_and_safety_outlined),
                         trailing: const Text(
