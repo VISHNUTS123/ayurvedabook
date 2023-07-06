@@ -1,6 +1,6 @@
-import 'package:ayurvedabook/profile.dart';
+import 'package:ayurvedabook/USER/userlanding.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import '../main.dart';
 
 class tdetails extends StatefulWidget {
   const tdetails({super.key});

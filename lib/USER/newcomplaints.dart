@@ -1,6 +1,7 @@
 import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/profile.dart';
+import 'package:ayurvedabook/USER/userlanding.dart';
 import 'package:flutter/material.dart';
+import 'package:ayurvedabook/appdraweruser.dart';
 
 class complaintnew extends StatefulWidget {
   const complaintnew({super.key});
@@ -19,48 +20,7 @@ class _complaintnewState extends State<complaintnew> {
       ),
       backgroundColor: const Color(0xff764abc),
     ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
-                child: Text('Vishnu',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
-              Icons.person,
-              size: 50,
-            ),),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        profile1(), // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.home),
-                title: const Text('Home'),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          WelcomePage() // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.logout),
-                title: const Text('Logout'),
-              ),
-            ),
-          ],
-        ),
-      ),
+     drawer: UserDrawer(),
       body: Container(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(

@@ -1,7 +1,7 @@
 import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/doctorlist.dart';
+import 'package:ayurvedabook/USER/doctorlist.dart';
 import 'package:flutter/material.dart';
-import 'package:ayurvedabook/profile.dart';
+import 'package:ayurvedabook/USER/userlanding.dart';
 
 class DoctorBioPge extends StatelessWidget {
   const DoctorBioPge({super.key});

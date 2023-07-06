@@ -1,8 +1,9 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/Registration.dart';
-import 'package:ayurvedabook/profile.dart';
+import 'package:ayurvedabook/USER/userlanding.dart';
 import 'doctor/doctorlanding.dart';
+import 'package:ayurvedabook/admin/admin_landing.dart';
 
 class login1 extends StatefulWidget {
   const login1({super.key});
@@ -26,8 +27,14 @@ class _login1State extends State<login1> {
         context,
         MaterialPageRoute(builder: (context) => DoctorLanding()),
       );
-    } else {
+    } else if(enteredPassword == '789') {
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => AdminLanding()),
+    );
       // Password doesn't match, handle the error
+    }else{
+  print('CREDENTIALS DOESNt MATCH');
     }
   }
 

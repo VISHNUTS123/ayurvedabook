@@ -1,7 +1,9 @@
 import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/profile.dart';
-import 'package:ayurvedabook/newcomplaints.dart';
+import 'package:ayurvedabook/USER/userlanding.dart';
+import 'package:ayurvedabook/USER/newcomplaints.dart';
 import 'package:flutter/material.dart';
+import 'package:ayurvedabook/appdraweruser.dart';
+import 'complaintResponseview.dart';
 
 class oldcomplaints extends StatefulWidget {
   const oldcomplaints({super.key});
@@ -21,48 +23,8 @@ class _oldcomplaintsState extends State<oldcomplaints> {
         ),
         backgroundColor: const Color(0xff764abc),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
-                child: Text('Vishnu',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
-              Icons.person,
-              size: 50,
-            ),),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        profile1(), // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.home),
-                title: const Text('Home'),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          WelcomePage() // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.logout),
-                title: const Text('Logout'),
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: UserDrawer(),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -73,9 +35,20 @@ class _oldcomplaintsState extends State<oldcomplaints> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: const Icon(Icons.list),
-                      trailing: const Text(
-                        "View response",
-                        style: TextStyle(color: Colors.green, fontSize: 15),
+                      trailing: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ViewResponse(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "View Response",
+                          style: TextStyle(color: Colors.green, fontSize: 15),
+                        ),
+
                       ),
                       title: Text("List item ${index + 1}",style: TextStyle(fontWeight: FontWeight.bold),),
                       subtitle: Text('Description'),

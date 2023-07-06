@@ -12,141 +12,91 @@ import 'package:ayurvedabook/appdrawerdoctor.dart';
  class _NewDetailsState extends State<NewDetails> {
    @override
    Widget build(BuildContext context) {
-     return Scaffold(body: Center(
-       child: SingleChildScrollView(
-         child: Padding(
-           padding: const EdgeInsets.all(15),
-           child: Column(
-             children: [
-               Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text(
-                     'Name',
-                     style: TextStyle(
-                         fontFamily: 'Caprasimo',
-                         fontWeight: FontWeight.bold,
-                         fontSize: 18),
-                   )),
-               SizedBox(
-                 height: 10,
-               ),
-               TextField(
-                 decoration: InputDecoration(
-                     contentPadding: EdgeInsets.symmetric(vertical: 10),
-                     enabledBorder: OutlineInputBorder(
-                         borderSide:
-                         const BorderSide(width: 1, color: Colors.black))),
-               ),
-               SizedBox(
-                 height: 20,
-               ),
-               Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text(
-                     'Age',
-                     style: TextStyle(
-                         fontFamily: 'Caprasimo',
-                         fontWeight: FontWeight.bold,
-                         fontSize: 18),
-                   )),
-               SizedBox(
-                 height: 10,
-               ),
-               TextField(
-                 decoration: InputDecoration(
-                     contentPadding: EdgeInsets.symmetric(vertical: 10),
-                     enabledBorder: OutlineInputBorder(
-                         borderSide:
-                         const BorderSide(width: 1, color: Colors.black))),
-               ),
-               SizedBox(
-                 height: 20,
-               ),
-               Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text(
-                     'Weight',
-                     style: TextStyle(
-                         fontFamily: 'Caprasimo',
-                         fontWeight: FontWeight.bold,
-                         fontSize: 18),
-                   )),
-               SizedBox(
-                 height: 10,
-               ),
-               TextField(
-                 decoration: InputDecoration(
-                     contentPadding: EdgeInsets.symmetric(vertical: 10),
-                     enabledBorder: OutlineInputBorder(
-                         borderSide:
-                         const BorderSide(width: 1, color: Colors.black))),
-               ),
-               SizedBox(
-                 height: 20,
-               ),
-               Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text(
-                     'Height',
-                     style: TextStyle(
-                         fontFamily: 'Caprasimo',
-                         fontWeight: FontWeight.bold,
-                         fontSize: 18),
-                   )),
-               SizedBox(
-                 height: 10,
-               ),
-               TextField(
-                 decoration: InputDecoration(
-                     contentPadding: EdgeInsets.symmetric(vertical: 10),
-                     enabledBorder: OutlineInputBorder(
-                         borderSide:
-                         const BorderSide(width: 1, color: Colors.black))),
-               ),
-               SizedBox(
-                 height: 20,
-               ),
-               Align(
-                   alignment: Alignment.centerLeft,
-                   child: Text(
-                     'Brief description about your symptoms',
-                     style: TextStyle(
-                         fontFamily: 'Caprasimo',
-                         fontWeight: FontWeight.bold,
-                         fontSize: 18),
-                   )),
-               SizedBox(
-                 height: 10,
-               ),
-               TextField(
-                 decoration: InputDecoration(
-                     contentPadding: EdgeInsets.symmetric(vertical: 80),
-                     enabledBorder: OutlineInputBorder(
-                         borderSide:
-                         const BorderSide(width: 1, color: Colors.black))),
-               ),
-               SizedBox(
-                 height: 20,
-               ),
-               Container(
-                 width: 150,
-                 height: 30,
-                 decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(50),
-                   border: Border.all(),
-                   color: Colors.greenAccent,
-                 ),
-                 child: Center(
+     return Scaffold(
+       appBar: AppBar(
+         centerTitle: true,
+         title: const Text(
+           'ADD MEDICATIONS',
+         ),
+         backgroundColor: const Color(0xff764abc),
+       ),
+       drawer: CustomDrawer(),
+       body: Center(
+       child: Align(
+         alignment: Alignment.topCenter,
+         child: SingleChildScrollView(
+
+           child: Padding(
+             padding: const EdgeInsets.all(15),
+             child: Column(
+               children: [
+
+
+                 Align(
+                     alignment: Alignment.centerLeft,
                      child: Text(
-                       'POST',
+                       'Disease after Diagnosis',
                        style: TextStyle(
-                         fontFamily: ' Caprasimo',
-                         fontWeight: FontWeight.bold,
-                         fontSize: 20,
-                       ),
+                           fontFamily: 'Caprasimo',
+                           fontWeight: FontWeight.bold,
+                           fontSize: 24),
                      )),
-               ),
-             ],
+                 SizedBox(
+                   height: 15,
+                 ),
+
+
+                 TextField(
+                   decoration: InputDecoration(
+                       contentPadding: EdgeInsets.symmetric(vertical: 10),
+                       enabledBorder: OutlineInputBorder(
+                           borderSide:
+                           const BorderSide(width: 1, color: Colors.black))),
+                 ),
+                 SizedBox(height: 30,),
+                 Align(
+                     alignment: Alignment.centerLeft,
+                     child: Text(
+                       'Prescription',
+                       style: TextStyle(
+                           fontFamily: 'Caprasimo',
+                           fontWeight: FontWeight.bold,
+                           fontSize: 24),
+                     )),
+                 SizedBox(
+                   height: 15,
+                 ),
+                 TextField(
+                   decoration: InputDecoration(
+                       contentPadding: EdgeInsets.symmetric(vertical: 100),
+                       enabledBorder: OutlineInputBorder(
+                           borderSide:
+                           const BorderSide(width: 1, color: Colors.black))),
+                 ),
+                 SizedBox(
+                   height: 20,
+                 ),
+                 SizedBox(height: 50,),
+                 Container(
+                   width: 150,
+                   height: 50,
+                   decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(50),
+                     border: Border.all(),
+                     color: Colors.greenAccent,
+                   ),
+                   child: Center(
+                       child: Text(
+                         'POST',
+                         style: TextStyle(
+                           fontFamily: ' Caprasimo',
+                           fontWeight: FontWeight.bold,
+                           fontSize: 20,
+                         ),
+                       )),
+                 ),
+               ],
+             ),
            ),
          ),
        ),

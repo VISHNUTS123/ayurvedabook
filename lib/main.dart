@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/Registration.dart';
 import 'package:ayurvedabook/login.dart';
-import 'package:ayurvedabook/profile.dart';
+import 'package:ayurvedabook/USER/userlanding.dart';
 
 
 void main() {

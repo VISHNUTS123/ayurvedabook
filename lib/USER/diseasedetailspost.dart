@@ -1,5 +1,5 @@
 import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/profile.dart';
+import 'package:ayurvedabook/USER/userlanding.dart';
 import 'package:flutter/material.dart';
 
 class postdetails extends StatefulWidget {

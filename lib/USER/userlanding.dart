@@ -1,11 +1,12 @@
-import 'package:ayurvedabook/book.dart';
+import 'package:ayurvedabook/USER/book.dart';
 import 'package:ayurvedabook/login.dart';
-import 'package:ayurvedabook/treatementdetails.dart';
+import 'package:ayurvedabook/USER/treatementdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/diseasedetailspost.dart';
-import 'package:ayurvedabook/complaints.dart';
-import 'package:ayurvedabook/doctorlist.dart';
+import 'package:ayurvedabook/USER/diseasedetailspost.dart';
+import 'package:ayurvedabook/USER/complaints.dart';
+import 'package:ayurvedabook/USER/doctorlist.dart';
+import 'package:ayurvedabook/appdraweruser.dart';
 
 class profile1 extends StatefulWidget {
   const profile1({super.key});
@@ -25,48 +26,7 @@ class _profile1State extends State<profile1> {
         ),
         backgroundColor: const Color(0xff764abc),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
-                child: Text('Vishnu',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
-              Icons.person,
-              size: 50,
-            ),),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        profile1(), // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.home),
-                title: const Text('Home'),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          WelcomePage() // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.logout),
-                title: const Text('Logout'),
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer:UserDrawer() ,
       backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(

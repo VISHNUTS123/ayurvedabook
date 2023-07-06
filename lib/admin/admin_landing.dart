@@ -1,75 +1,38 @@
+import 'package:ayurvedabook/admin/viewdoctorbookingdetails.dart';
+import 'package:ayurvedabook/doctor/Booking_details.dart';
+import 'package:ayurvedabook/doctor/doctorlanding.dart';
 import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/login.dart';
 import 'package:flutter/material.dart';
+import 'appdraweradmin.dart';
+import 'adddoctordetails.dart';
+import 'addmedicine.dart';
+import 'postawareness.dart';
+import 'viewcomplaintsandreply.dart';
+import 'viewcomplaintsandreply.dart';
+import 'viewtreatmentdetails.dart';
+import 'viewpatientdetailslist.dart';
 
-class Home4doctor extends StatefulWidget {
-  const Home4doctor({super.key});
+class AdminLanding extends StatefulWidget {
+  const AdminLanding({super.key});
 
   @override
-  State<Home4doctor> createState() => _Home4doctorState();
+  State<AdminLanding> createState() => _AdminLandingState();
 }
 
-class _Home4doctorState extends State<Home4doctor> {
+class _AdminLandingState extends State<AdminLanding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'WELCOME',
+        'WELCOME ADMIN',
+    ),
+    backgroundColor: const Color(0xff764abc),
         ),
-        backgroundColor: const Color(0xff764abc),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            UserAccountsDrawerHeader(decoration: BoxDecoration(color: Colors.greenAccent),accountName: Padding(padding: EdgeInsets.only(top: 8),
-                child: Text('',style: TextStyle(fontFamily: 'Caprasimo',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 24),)),accountEmail: null, currentAccountPicture: Icon(
-              Icons.person,
-              size: 50,
-            ),),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        profile1(), // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.home),
-                title: const Text('Home'),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          WelcomePage() // Replace NextScreen with the screen you want to navigate to
-                  ),
-                );
-              },
-              child: ListTile(
-                leading: Icon(Icons.logout),
-                title: const Text('Logout'),
-              ),
-            ),
-          ],
-        ),
-      ),
-      backgroundColor: Colors.transparent,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: RadialGradient(
-            colors: [Colors.white, Colors.white],
-          ),
-        ),
-        child: Center(
+      drawer: AdminAppDrawer(),
+
+        body : Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -86,14 +49,19 @@ class _Home4doctorState extends State<Home4doctor> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CircleAvatar(
-                              backgroundImage: AssetImage('images/aware.jpg'),
+                              backgroundImage: AssetImage('images/addmedi.jpg'),
                               radius: 50,
                             ),
                             SizedBox(
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MedicineAdd()));
+                              },
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -103,38 +71,7 @@ class _Home4doctorState extends State<Home4doctor> {
                                 ),
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
                               ),
-                              child: Text('Awareness',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                            )
-
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage('images/list.jpg'),
-                              radius: 50,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ElevatedButton(
-                              onPressed: () {Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ListPage()));},
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    side: BorderSide(width: 1, color: Colors.black),
-                                  ),
-                                ),
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
-                              ),
-                              child: Text('Doctors List',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                              child: Text('Add Medicine',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                             )
 
                           ],
@@ -152,41 +89,10 @@ class _Home4doctorState extends State<Home4doctor> {
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => tdetails()));},
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    side: BorderSide(width: 1, color: Colors.black),
-                                  ),
-                                ),
-                                backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
-                              ),
-                              child: Text('View Treatment \n         Details',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                            )
-
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage('images/post.png'),
-                              radius: 50,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ElevatedButton(
                               onPressed: () { Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => postdetails()));},
+                                      builder: (context) =>PatientsList()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -196,7 +102,7 @@ class _Home4doctorState extends State<Home4doctor> {
                                 ),
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
                               ),
-                              child: Text('        Post your \n   Disease Details',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                              child: Text('View Patient Details',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                             )
 
                           ],
@@ -207,17 +113,19 @@ class _Home4doctorState extends State<Home4doctor> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CircleAvatar(
-                              backgroundImage: AssetImage('images/booking.png'),
+                              backgroundImage: AssetImage('images/viewcomplaints.jpg'),
                               radius: 50,
                             ),
                             SizedBox(
                               height: 20,
                             ),
                             ElevatedButton(
-                              onPressed: () {Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Booking()));},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ViewComplaints()));
+                              },
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -227,7 +135,69 @@ class _Home4doctorState extends State<Home4doctor> {
                                 ),
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
                               ),
-                              child: Text('Booking',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                              child: Text('View Complaints\n         and Reply',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                            )
+
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: AssetImage('images/postaware.png'),
+                              radius: 50,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AwarenessPost())); },
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    side: BorderSide(width: 1, color: Colors.black),
+                                  ),
+                                ),
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
+                              ),
+                              child: Text('Post Awareness',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                            )
+
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: AssetImage('images/adddoctor.png'),
+                              radius: 50,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AddDoctor()));},
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    side: BorderSide(width: 1, color: Colors.black),
+                                  ),
+                                ),
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
+                              ),
+                              child: Text('Add Doctor Details',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                             )
 
                           ],
@@ -239,7 +209,7 @@ class _Home4doctorState extends State<Home4doctor> {
                           children: [
                             CircleAvatar(
                               backgroundImage:
-                              AssetImage('images/complaint.jpg'),
+                              AssetImage('images/viewbookingdetails.png'),
                               radius: 50,
                             ),
                             SizedBox(
@@ -249,7 +219,7 @@ class _Home4doctorState extends State<Home4doctor> {
                               onPressed: () { Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>oldcomplaints()));},
+                                      builder: (context) => DoctorBooking()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -259,7 +229,7 @@ class _Home4doctorState extends State<Home4doctor> {
                                 ),
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
                               ),
-                              child: Text('Complaints',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                              child: Text('View Doctor \n Booking Details',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                             )
 
                           ],
@@ -272,7 +242,6 @@ class _Home4doctorState extends State<Home4doctor> {
             ),
           ),
         ),
-      ),
 
     );
   }
