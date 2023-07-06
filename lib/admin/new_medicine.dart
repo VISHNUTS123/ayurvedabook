@@ -1,23 +1,23 @@
 import 'package:ayurvedabook/main.dart';
 import 'package:flutter/material.dart';
+import 'addmedicine.dart';
 import 'appdraweradmin.dart';
-import 'admin_landing.dart';
 
-class AwarenessPost extends StatefulWidget {
-  const AwarenessPost({super.key});
+class NewMedicine extends StatefulWidget {
+  const NewMedicine({super.key});
 
   @override
-  State<AwarenessPost> createState() => _AwarenessPoatState();
+  State<NewMedicine> createState() => _NewMedicineState();
 }
 
-class _AwarenessPoatState extends State<AwarenessPost> {
+class _NewMedicineState extends State<NewMedicine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'ADD TIP OF THE DAY',
+          'ADD NEW MEDICINE',
         ),
         backgroundColor: const Color(0xff764abc),
       ),
@@ -33,18 +33,32 @@ class _AwarenessPoatState extends State<AwarenessPost> {
                 children: [
 
 
-
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name of Medicine',
+                        style: TextStyle(
+                            fontFamily: 'Caprasimo',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24),
+                      )),
                   SizedBox(
                     height: 15,
                   ),
 
 
-
+                  TextField(
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 10),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide:
+                            const BorderSide(width: 1, color: Colors.black))),
+                  ),
                   SizedBox(height: 30,),
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'TIP OF THE DAY',
+                        'Quantity',
                         style: TextStyle(
                             fontFamily: 'Caprasimo',
                             fontWeight: FontWeight.bold,
@@ -55,12 +69,14 @@ class _AwarenessPoatState extends State<AwarenessPost> {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 200),
+                        contentPadding: EdgeInsets.symmetric(vertical: 10),
                         enabledBorder: OutlineInputBorder(
                             borderSide:
                             const BorderSide(width: 1, color: Colors.black))),
                   ),
-
+                  SizedBox(
+                    height: 20,
+                  ),
                   SizedBox(height: 50,),
                   Container(
                     width: 150,
