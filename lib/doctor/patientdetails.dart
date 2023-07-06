@@ -2,6 +2,7 @@ import 'package:ayurvedabook/main.dart';
 import 'package:flutter/material.dart';
 import 'doctorlanding.dart';
 import 'package:ayurvedabook/appdrawerdoctor.dart';
+import 'newtreatmentdetails.dart';
 
 
 List<String> name = [
@@ -58,7 +59,13 @@ class _PatientDetailsState extends State<PatientDetails> {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: (){
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                NewDetails()// Replace NextScreen with the screen you want to navigate to
+                        ),
+                      );
                     },
                     child: ListTile(
                       leading: const Icon(Icons.bookmark),
