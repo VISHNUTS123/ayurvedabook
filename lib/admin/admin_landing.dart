@@ -135,7 +135,7 @@ class _AdminLandingState extends State<AdminLanding> {
                                 ),
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
                               ),
-                              child: Text('View Complaints\n         and Reply',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                              child: Text('View Complaints\n      and Reply',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                             )
 
                           ],

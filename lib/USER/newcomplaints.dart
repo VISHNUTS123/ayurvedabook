@@ -83,6 +83,7 @@ class _complaintnewState extends State<complaintnew> {
             ),
           ),
         ),
-      ),);
+      ),
+    );
   }
 }
