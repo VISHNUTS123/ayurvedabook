@@ -1,12 +1,12 @@
 import 'package:ayurvedabook/USER/book.dart';
 import 'package:ayurvedabook/login.dart';
-import 'package:ayurvedabook/USER/treatementdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/USER/diseasedetailspost.dart';
+import 'diseasedetsailspost.dart';
 import 'package:ayurvedabook/USER/complaints.dart';
 import 'package:ayurvedabook/USER/doctorlist.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
+import 'treatementdetails.dart';
 
 class profile1 extends StatefulWidget {
   const profile1({super.key});
@@ -120,7 +120,7 @@ class _profile1State extends State<profile1> {
                               onPressed: () {Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => tdetails()));},
+                                      builder: (context) => TreatmentDetails()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -141,7 +141,7 @@ class _profile1State extends State<profile1> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CircleAvatar(
-                              backgroundImage: AssetImage('images/post.png'),
+                              backgroundImage: AssetImage('images/viewbookingdetails.png'),
                               radius: 50,
                             ),
                             SizedBox(
@@ -151,7 +151,7 @@ class _profile1State extends State<profile1> {
                               onPressed: () { Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => postdetails()));},
+                                      builder: (context) => DiseaseDetails()));},
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
@@ -161,7 +161,7 @@ class _profile1State extends State<profile1> {
                                 ),
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent), // Set the background color
                               ),
-                              child: Text('        Post your \n   Disease Details',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                              child: Text('Disease Details',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                             )
 
                           ],

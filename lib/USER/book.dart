@@ -3,6 +3,7 @@ import 'package:ayurvedabook/USER/userlanding.dart';
 import 'package:ayurvedabook/USER/doctorlist.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
+import 'bookappointment.dart';
 
 class Booking extends StatefulWidget {
   const Booking({super.key});
@@ -24,11 +25,9 @@ class _BookingState extends State<Booking> {
       ),
       drawer: UserDrawer(),
       body: Center(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
@@ -39,7 +38,6 @@ class _BookingState extends State<Booking> {
                 ),
               ),
             ),
-
             Expanded(
               child: ListView.builder(
                 itemCount: doctors.length,
@@ -47,26 +45,29 @@ class _BookingState extends State<Booking> {
                   return GestureDetector(
                     child: ListTile(
                       leading: const Icon(Icons.health_and_safety_outlined),
-                      trailing: const Text(
-                        "BOOK",
-                        style: TextStyle(color: Colors.green, fontSize: 15),
-                      ),
+                      trailing: TextButton(onPressed: (){  Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Appointment()));}, child:Text('BOOK')),
                       title: Text(doctors[index]),
-                      subtitle: Text(specailization[index]),
+                      subtitle: Align(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(specailization[index]),
+                            Text('Available time'),
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 },
               ),
-            )
-
-
-
-
+            ),
           ],
         ),
       ),
-
-
     );
   }
 }

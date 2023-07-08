@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'USER/book.dart';
 import 'package:ayurvedabook/USER/userlanding.dart';
 import 'USER/complaints.dart';
-import 'USER/diseasedetailspost.dart';
 import 'USER/doctorlist.dart';
 import 'USER/doctors.dart';
 import 'USER/newcomplaints.dart';
