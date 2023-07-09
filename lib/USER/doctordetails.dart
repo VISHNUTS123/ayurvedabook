@@ -3,6 +3,7 @@ import 'package:ayurvedabook/main.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
 import 'doctorlist.dart';
 import 'bookappointment.dart';
+import 'book.dart';
 
 class DetailsDoctor extends StatefulWidget {
   const DetailsDoctor({super.key});
@@ -108,7 +109,7 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
                     ElevatedButton(onPressed: (){Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Appointment()));}, child: Text('BOOK NOW',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 24),),)
+                            builder: (context) => Booking()));}, child: Text('BOOK NOW',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 24),),)
                   ],
                 ),
               ),

@@ -73,9 +73,27 @@ class _BookingdetailsState extends State<Bookingdetails> {
                     },
                     child: ListTile(
                       leading: const Icon(Icons.bookmark),
-                      trailing: const Text(
-                        "Details",
-                        style: TextStyle(color: Colors.green, fontSize: 15),
+                      trailing: Column(
+                        children: [
+                          Expanded(
+                            child: TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Accept",
+                                style: TextStyle(color: Colors.green, fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Reject",
+                                style: TextStyle(color: Colors.red, fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       title: Text(name[index],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                       subtitle:Column(

@@ -1,18 +1,105 @@
-import 'package:ayurvedabook/main.dart';
-import 'package:ayurvedabook/USER/userlanding.dart';
-import 'package:ayurvedabook/USER/doctorlist.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
 import 'bookappointment.dart';
 
+
+List<String> doctors = [
+  'Dr.Vinay',
+  'Dr. Akash S',
+  'Dr. Amal ',
+  'Dr. Ajay ',
+  'Dr. Paul ',
+
+
+
+
+];
+
+List<String> specailization =[
+  'Orthopedics',
+  'Pediatrics',
+  'Internal medicine',
+  'Dermatology',
+  'Psychiatry',
+
+];
+
+
 class Booking extends StatefulWidget {
-  const Booking({super.key});
+  const Booking({Key? key}) : super(key: key);
 
   @override
   State<Booking> createState() => _BookingState();
 }
 
 class _BookingState extends State<Booking> {
+  void _showModalBottomSheet(BuildContext context) {
+    DateTime selectedDate = DateTime.now();
+    TimeOfDay selectedTime = TimeOfDay.now();
+
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Container(
+            height: 200,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Select Date and Time',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Perform the booking logic using selectedDate and selectedTime
+                      // Close the bottom sheet
+                    },
+                    child: Text('Book'),
+                  ),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () async {
+                      final DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: selectedDate,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2100),
+                      );
+                      if (pickedDate != null && pickedDate != selectedDate) {
+                        setState(() {
+                          selectedDate = pickedDate;
+                        });
+                      }
+                    },
+                    child: Text('Select Date'),
+                  ),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () async {
+                      final TimeOfDay? pickedTime = await showTimePicker(
+                        context: context,
+                        initialTime: selectedTime,
+                      );
+                      if (pickedTime != null && pickedTime != selectedTime) {
+                        setState(() {
+                          selectedTime = pickedTime;
+                        });
+                      }
+                    },
+                    child: Text('Select Time'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,12 +130,17 @@ class _BookingState extends State<Booking> {
                 itemCount: doctors.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
+                    onTap: () {
+                      _showModalBottomSheet(context); // Show the modal bottom sheet
+                    },
                     child: ListTile(
                       leading: const Icon(Icons.health_and_safety_outlined),
-                      trailing: TextButton(onPressed: (){  Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Appointment()));}, child:Text('BOOK')),
+                      trailing: TextButton(
+                        onPressed: () {
+                          _showModalBottomSheet(context); // Show the modal bottom sheet
+                        },
+                        child: Text('BOOK'),
+                      ),
                       title: Text(doctors[index]),
                       subtitle: Align(
                         alignment: Alignment.topLeft,
@@ -70,4 +162,8 @@ class _BookingState extends State<Booking> {
       ),
     );
   }
+
+  // Mock data for demonstration purposes
+
 }
+
