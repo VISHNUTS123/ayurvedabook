@@ -4,6 +4,14 @@ import 'package:ayurvedabook/Registration.dart';
 import 'package:ayurvedabook/USER/userlanding.dart';
 import 'doctor/doctorlanding.dart';
 import 'package:ayurvedabook/admin/admin_landing.dart';
+import 'dart:convert';
+import 'API/api.dart';
+import 'package:http/http.dart' as http;
+import 'package:ayurvedabook/USER/userlanding.dart';
+import 'package:ayurvedabook/doctor/doctorlanding.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class login1 extends StatefulWidget {
   const login1({super.key});
@@ -13,36 +21,73 @@ class login1 extends StatefulWidget {
 }
 
 class _login1State extends State<login1> {
-  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController UserNameController = TextEditingController();
+  TextEditingController PasswordController = TextEditingController();
 
-  void _login() {
-    final enteredPassword = _passwordController.text;
-    if (enteredPassword == '123') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => profile1()),
+
+  late SharedPreferences localStorage;
+  late int loginId ;
+  String role = '';
+  String status = '';
+  bool Loading = false;
+
+  final _formKey = GlobalKey<FormState>();
+
+  LoginButton() async {
+    setState(() {
+      Loading = true;
+    });
+    var data = {
+      'username': UserNameController.text.trim(), //username for email
+      'password': PasswordController.text.trim()
+    };
+    var res = await ApiCalling().PostRegister(data,'/api/login_users');
+    var body = json.decode(res.body);
+
+    if (body['success'] == true) {
+      print(body);
+
+      role = body['data']['role'];
+      status =  body['data']['l_status'];
+
+      localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('role', role.toString());
+      localStorage.setInt('login_id', body['data']['login_id']);
+      localStorage.setInt('user_id',  body['data']['user_id']);
+
+      print('login_id ${body['data']['login_id']}');
+      print('user_id ${body['data']['user_id']}');
+      const String user = 'patient'; // Replace 'user' with the actual user role value
+      const String doctor = 'doctor'; // Replace 'user' with the actual user role value
+      const String storedvalue = '1'; // Replace 'user' with the actual user role value
+
+      if (user == role &&
+          storedvalue == status) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => profile1()));
+      } else if (doctor == role &&
+          storedvalue == status) {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => DoctorLanding(),
+        ));
+      }else {
+        Fluttertoast.showToast(
+          msg: "Please wait for admin approval",
+          backgroundColor: Colors.grey,
+        );
+      }
+
+
+    } else {
+      Fluttertoast.showToast(
+        msg: body['message'].toString(),
+        backgroundColor: Colors.grey,
       );
-    } else if (enteredPassword == '456') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => DoctorLanding()),
-      );
-    } else if(enteredPassword == '789') {
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => AdminLanding()),
-    );
-      // Password doesn't match, handle the error
-    }else{
-  print('CREDENTIALS DOESNt MATCH');
     }
   }
 
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +149,7 @@ class _login1State extends State<login1> {
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Email',
+                        'Username',
                         style: TextStyle(
                             fontFamily: 'Caprasimo',
                             fontWeight: FontWeight.bold),
@@ -113,6 +158,7 @@ class _login1State extends State<login1> {
                     height: 5,
                   ),
                   TextField(
+                    controller: UserNameController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -133,7 +179,7 @@ class _login1State extends State<login1> {
                     height: 5,
                   ),
                   TextField(
-                    controller: _passwordController,
+                    controller: PasswordController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -145,7 +191,7 @@ class _login1State extends State<login1> {
                   ),
                   GestureDetector(
                     onTap: () {
-                   _login();
+                     LoginButton();
                     },
                     child: Container(
                       width: 300,

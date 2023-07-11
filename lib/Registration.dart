@@ -1,8 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-
-import 'main.dart';
-import 'package:ayurvedabook/login.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+import 'API/api.dart';
+import 'login.dart';
 class Registration extends StatefulWidget {
   const Registration({super.key});
 
@@ -23,6 +24,52 @@ class _RegistrationState extends State<Registration> {
   TextEditingController pincodeController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+
+  bool isLoading =false ;
+  void RegisterUser()async{
+    setState(() {
+      isLoading = true;
+    });
+    var data = {
+      "patientusername": usernameController.text.trim(),
+      "patientpassword": passwordController.text.trim(),
+      "patientname": nameController.text.trim(),
+      "patientage": ageController.text.trim(),
+      "patientgender": genderController.text.trim(),
+      "patientemail": emailController.text.trim(),
+      "patientphone": phoneController.text.trim(),
+      "patientaddress": addressController.text.trim(),
+      "patientplace": placeController.text.trim(),
+      "patientpost": postController.text.trim(),
+      "patientpincode": pincodeController.text.trim(),
+    };
+    print("patient data${data}");
+    var apiCalling = ApiCalling();
+    var res = await apiCalling. PostRegister(data,'/api/patient_register');
+    var body = json.decode(res.body);
+    print('res${body}');
+    if(body['success']==true)
+    {
+      Fluttertoast.showToast(
+        msg: body['message'].toString(),
+        backgroundColor: Colors.grey,
+      );
+
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>login1()));
+
+    }
+    else
+    {
+      Fluttertoast.showToast(
+        msg: body['message'].toString(),
+        backgroundColor: Colors.grey,
+      );
+
+    }
+
+  }
+
 
 
   ///
@@ -320,7 +367,9 @@ class _RegistrationState extends State<Registration> {
                     height: 30, // <-- SEE HERE
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      RegisterUser();
+                    },
                     child: Container(
                       width: 300,
                       height: 50,
