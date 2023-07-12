@@ -23,10 +23,10 @@ class _profile1State extends State<profile1> {
         centerTitle: true,
         title: const Text(
           'WELCOME',
-        ),
+        ),//app bar is used to create topside of an app
         backgroundColor: const Color(0xff764abc),
       ),
-      drawer:UserDrawer() ,
+      drawer:UserDrawer() ,//used to cretae sidewise drawer
       backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(

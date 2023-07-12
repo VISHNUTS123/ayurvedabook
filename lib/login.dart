@@ -39,15 +39,15 @@ class _login1State extends State<login1> {
     });
     var data = {
       'username': UserNameController.text.trim(), //username for email
-      'password': PasswordController.text.trim()
+      'password': PasswordController.text.trim()//trim is used to avoid errors causing via spaces
     };
     var res = await ApiCalling().PostRegister(data,'/api/login_users');
-    var body = json.decode(res.body);
+    var body = json.decode(res.body);//used to decode the data in json format
 
     if (body['success'] == true) {
       print(body);
 
-      role = body['data']['role'];
+      role = body['data']['role'];//storing the data from body data and the field role
       status =  body['data']['l_status'];
 
       localStorage = await SharedPreferences.getInstance();
@@ -71,7 +71,7 @@ class _login1State extends State<login1> {
           builder: (context) => DoctorLanding(),
         ));
       }else {
-        Fluttertoast.showToast(
+        Fluttertoast.showToast(//to display messages
           msg: "Please wait for admin approval",
           backgroundColor: Colors.grey,
         );

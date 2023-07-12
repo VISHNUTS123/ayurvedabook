@@ -7,6 +7,7 @@ import 'USER/doctorlist.dart';
 import 'USER/doctors.dart';
 import 'USER/newcomplaints.dart';
 import 'USER/doctordetails.dart';
+import 'package:ayurvedabook/USER/userdetails.dart';
 
 
 class UserDrawer extends StatelessWidget {
@@ -22,13 +23,24 @@ class UserDrawer extends StatelessWidget {
             decoration: BoxDecoration(color: Colors.greenAccent),
             accountName: Padding(
               padding: EdgeInsets.only(top: 8),
-              child: Text(
-                'USER',
-                style: TextStyle(
-                  fontFamily: 'Caprasimo',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 24,
+              child: GestureDetector(
+                onTap: (){
+
+                },
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UserDetails()));
+                  },
+                  child: Text(
+                    'USER',
+                    style: TextStyle(
+                        fontFamily: 'Caprasimo',
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
@@ -65,7 +77,9 @@ class UserDrawer extends StatelessWidget {
               leading: Icon(Icons.logout),
               title: const Text('Logout'),
             ),
+
           ),
+
         ],
       ),
     );
