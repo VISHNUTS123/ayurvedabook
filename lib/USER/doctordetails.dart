@@ -24,7 +24,7 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
 
   Future<void> fetchDoctorDetails(int doctorId) async {
     ReturnDetails details = ReturnDetails();
-    DoctorDetails? fetchedDetails = await details.fetchDoctorDetails(id);
+    DoctorDetails? fetchedDetails = await details.fetchDoctorDetails(doctorId); // Update to use doctorId parameter
     setState(() {
       doctorDetails = fetchedDetails;
     });

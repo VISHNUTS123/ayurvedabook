@@ -32,6 +32,7 @@ class _ListPageState extends State<ListPage> {
     });
   }
 
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -71,9 +72,10 @@ class _ListPageState extends State<ListPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailsDoctor(doctorId: doctor.id),
+                              builder: (context) => DetailsDoctor(id: doctor.id,), // Use the 'doctor.id' as 'doctorId'
                             ),
                           );
+
                         },
                         child: const Text(
                           "Details",

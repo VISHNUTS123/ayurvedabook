@@ -2,7 +2,6 @@ import 'package:ayurvedabook/API/api.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';// requires to convert the datas into json format
-import 'package:ayurvedabook/API/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:ayurvedabook/USER/userlanding.dart';
 import 'package:ayurvedabook/doctor/doctorlanding.dart';
@@ -74,21 +73,16 @@ class ReturnValue {
 }
 
 class ReturnDetails {
-  late SharedPreferences id;
-
-  Future<List<DoctorDetails>> fetchDoctorDetails(int doctorId) async {
-    var response = await ApiCalling().getData(
-        '/api/get_alldoctor/' + id.toString());
+  Future<DoctorDetails> fetchDoctorDetails(int doctorId) async {
+    var response = await ApiCalling().getData('/api/get_alldoctor/' + doctorId.toString());
     if (response.statusCode == 200) {
-      var items = json.decode(response.body);
-      print((items));
+      var item = json.decode(response.body);
+      print(item);
 
-      List<DoctorDetails> products = List<DoctorDetails>.from(
-          items['data'].map((e) => DoctorDetails.fromJson(e)).toList());
-      return products;
+      DoctorDetails product = DoctorDetails.fromJson(item['data']);
+      return product;
     } else {
-      List<DoctorDetails> doctordetailsprint = [];
-      return doctordetailsprint;
+      throw Exception('Failed to fetch doctor details');
     }
   }
 }
