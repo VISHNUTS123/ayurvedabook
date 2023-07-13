@@ -4,27 +4,9 @@ import 'package:ayurvedabook/main.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/USER/doctorlist.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
+import 'MODEL/MODELDOCTOR.dart';
+import 'package:ayurvedabook/API/api.dart';
 
-List<String> doctors = [
-  'Dr.Vinay',
-  'Dr. Akash S',
-  'Dr. Amal ',
-  'Dr. Ajay ',
-  'Dr. Paul ',
-
-
-
-
-];
-
-List<String> specailization =[
-  'Orthopedics',
-  'Pediatrics',
-  'Internal medicine',
-  'Dermatology',
-  'Psychiatry',
-
-];
 
 
 
@@ -36,7 +18,20 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
+  List<DoctorDetails> doctorDetailsList = [];
   @override
+  void initState() {
+    super.initState();
+    fetchDoctorDetails(); // Call the method to fetch doctor details
+  }
+  Future<void> fetchDoctorDetails() async {
+    ReturnValue returnValue = ReturnValue();
+    List<DoctorDetails> fetchedDetails = await returnValue.fetchProductss();
+    setState(() {
+      doctorDetailsList = fetchedDetails;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -66,8 +61,9 @@ class _ListPageState extends State<ListPage> {
 
               Expanded(
                 child: ListView.builder(
-                  itemCount: doctors.length,
+                  itemCount: doctorDetailsList.length,
                   itemBuilder: (BuildContext context, int index) {
+                    DoctorDetails doctor = doctorDetailsList[index];
                     return ListTile(
                       leading: const Icon(Icons.health_and_safety_outlined),
                       trailing: TextButton(
@@ -75,7 +71,7 @@ class _ListPageState extends State<ListPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailsDoctor(),
+                              builder: (context) => DetailsDoctor(doctorId: doctor.id),
                             ),
                           );
                         },
@@ -83,13 +79,13 @@ class _ListPageState extends State<ListPage> {
                           "Details",
                           style: TextStyle(color: Colors.green, fontSize: 15),
                         ),
-
                       ),
-                      title: Text(doctors[index]),
-                      subtitle: Text(specailization[index]),
+                      title: Text(doctor.doctorname),//used to print the doctorname
+                      subtitle: Text(doctor.doctorspecialization),//used to print doctor speccialization
                     );
                   },
                 ),
+
               )
 
 

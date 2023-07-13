@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ayurvedabook/main.dart';
 import 'package:ayurvedabook/login.dart';
 import 'doctor/doctorlanding.dart';
+import 'package:ayurvedabook/doctor/Doctorediting.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -16,13 +17,24 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(color: Colors.greenAccent),
             accountName: Padding(
               padding: EdgeInsets.only(top: 8),
-              child: Text(
-                'DOCTOR',
-                style: TextStyle(
-                  fontFamily: 'Caprasimo',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 24,
+              child: GestureDetector(
+                onTap: (){
+
+                },
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>DoctorEditing()));
+                  },
+                  child: Text(
+                    'USER',
+                    style: TextStyle(
+                        fontFamily: 'Caprasimo',
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
