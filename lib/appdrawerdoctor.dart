@@ -1,8 +1,10 @@
+import 'package:ayurvedabook/USER/MODEL/MODELDOCTOR.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/main.dart';
 import 'package:ayurvedabook/login.dart';
 import 'doctor/doctorlanding.dart';
 import 'package:ayurvedabook/doctor/Doctorediting.dart';
+import 'package:ayurvedabook/USER/MODEL/MODELDOCTOR.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -26,10 +28,10 @@ class CustomDrawer extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>DoctorEditing()));
+                            builder: (context) =>DoctorDetailLogin(id)));
                   },
                   child: Text(
-                    'USER',
+                    'DOCTOR',
                     style: TextStyle(
                         fontFamily: 'Caprasimo',
                         color: Colors.black,
