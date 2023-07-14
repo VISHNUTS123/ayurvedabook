@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
 import 'MODEL/MODELDOCTOR.dart';
 
-
-
-
 class Booking extends StatefulWidget {
   const Booking({Key? key}) : super(key: key);
 
@@ -86,6 +83,7 @@ class _BookingState extends State<Booking> {
     super.initState();
     fetchDoctorDetails(); // Call the method to fetch doctor details
   }
+
   Future<void> fetchDoctorDetails() async {
     ReturnValue returnValue = ReturnValue();
     List<DoctorDetails> fetchedDetails = await returnValue.fetchProductss();
@@ -93,6 +91,7 @@ class _BookingState extends State<Booking> {
       doctorDetailsList = fetchedDetails;
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -130,15 +129,16 @@ class _BookingState extends State<Booking> {
                       trailing: TextButton(
                         onPressed: () {
                           bookmenu();
-
-
                         },
                         child: const Text(
                           "BOOK",
                           style: TextStyle(color: Colors.green, fontSize: 15),
                         ),
                       ),
-                      title: Text(doctor.doctorname, style: TextStyle(fontWeight: FontWeight.bold),),//used to print the doctorname
+                      title: Text(
+                       'Dr.${ doctor.doctorname}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ), //used to print the doctorname
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -150,13 +150,10 @@ class _BookingState extends State<Booking> {
                         ],
                       ),
                       // subtitle: Text(doctor.doctorspecialization),//used to print doctor speccialization
-
-
                     ),
                   );
                 },
               ),
-
             )
           ],
         ),
@@ -165,6 +162,4 @@ class _BookingState extends State<Booking> {
   }
 
   // Mock data for demonstration purposes
-
 }
-
