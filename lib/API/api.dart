@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiCalling {
-  final String url = "https://a740-117-198-161-217.ngrok-free.app"; // Corrected URL
+  final String url = "https://243d-14-139-185-121.ngrok-free.app"; // Corrected URL
 //this url is updated evertime you host the server via anaconda and ngrok
   // the command used for anconda prompt is Python manage.py runserver first use cd to navigate to the folder in which the manage.py stored
  // ngrok command : ngrok http 8000 --host-header rewrite

@@ -7,7 +7,7 @@ import 'package:ayurvedabook/doctor/Doctorediting.dart';
 import 'package:ayurvedabook/USER/MODEL/MODELDOCTOR.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  const CustomDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +20,25 @@ class CustomDrawer extends StatelessWidget {
             accountName: Padding(
               padding: EdgeInsets.only(top: 8),
               child: GestureDetector(
-                onTap: (){
-
-                },
+                onTap: () {},
                 child: TextButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    ReturnDetails returnDetails = ReturnDetails();
+                    DoctorDetails doctorDetails = await returnDetails.fetchDoctorDetails(1); // Replace 1 with the actual doctor ID
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>DoctorDetailLogin(id)));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DoctorDtailsLogin(id: doctorDetails.id),
+                      ),
+                    );
                   },
                   child: Text(
                     'DOCTOR',
                     style: TextStyle(
-                        fontFamily: 'Caprasimo',
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
+                      fontFamily: 'Caprasimo',
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
