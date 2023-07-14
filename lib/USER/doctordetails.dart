@@ -15,6 +15,7 @@ class DetailsDoctor extends StatefulWidget {
 
 class _DetailsDoctorState extends State<DetailsDoctor> {
   DoctorDetails? doctorDetails;
+  ApiCalling url1 = ApiCalling();
 
   @override
   void initState() {
@@ -45,7 +46,7 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
         child: Align(
           alignment: Alignment.topCenter,
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(15),
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -54,7 +55,10 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
                     Align(
                       alignment: Alignment.topCenter,
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('images/doctor.jpg'),
+                        backgroundImage: doctorDetails?.imageUrl != null
+                            ? NetworkImage(url1.url + doctorDetails!.imageUrl.toString())
+                            : null,
+
                         radius: 75,
                       ),
                     ),
@@ -86,7 +90,7 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Experience',
+                       'Experience',
                         style: TextStyle(
                           fontFamily: 'Caprasimo',
                           fontSize: 24,
@@ -106,33 +110,9 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Introduction ',
-                        style: TextStyle(
-                          fontFamily: 'Caprasimo',
-                          fontSize: 24,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
                       height: 10,
                     ),
-                    SizedBox(
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          """Dr. Ajay is a highly skilled dermatologist specialist with extensive experience in the field of dermatology. With a passion for skin health and a dedication to patient care, Dr. Ajay is committed to providing the highest level of dermatological services. His expertise covers a wide range of skin conditions, including acne, eczema, psoriasis, skin infections, and allergies. Dr. Ajay stays up to date with the latest advancements in dermatology and utilizes advanced diagnostic tools and treatment techniques to deliver accurate diagnoses and effective treatments. Patients appreciate his compassionate approach, clear communication, and personalized treatment plans, making him a trusted choice for all dermatological needs.""",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -150,7 +130,7 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "All working days Time : 10 AM to 2 PM",
+                          doctorDetails?.doctoravailabledays ?? '',
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
@@ -158,6 +138,43 @@ class _DetailsDoctorState extends State<DetailsDoctor> {
                     SizedBox(
                       height: 10,
                     ),
+                    SizedBox(
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          doctorDetails?.availabltime ?? '',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ), Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Email',
+                        style: TextStyle(
+                          fontFamily: 'Caprasimo',
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          doctorDetails?.doctoremail ?? '',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(

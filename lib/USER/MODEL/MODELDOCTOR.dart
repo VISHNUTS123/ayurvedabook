@@ -42,7 +42,7 @@ class DoctorDetails {
       id: json['id'],
       doctorname: json['doctorname'] ?? '',
       doctoremail: json['doctoremail'] ?? '',
-      availabltime: json['doctor_available-time'] ?? '',
+      availabltime: json['doctor_available_time'] ?? '',
       doctoravailabledays: json['doctor_available_days'] ?? '',
       doctorexperience: int.parse(json['doctorexperience']),
       doctorqualification: json['doctorqualification'] ?? '',
@@ -73,8 +73,8 @@ class ReturnValue {
 }
 
 class ReturnDetails {
-  Future<DoctorDetails> fetchDoctorDetails(int doctorId) async {
-    var response = await ApiCalling().getData('/api/get_alldoctor/' + doctorId.toString());
+  Future<DoctorDetails> fetchDoctorDetails(int id) async {
+    var response = await ApiCalling().getData('/api/single_doctor/' + id.toString());
     if (response.statusCode == 200) {
       var item = json.decode(response.body);
       print(item);

@@ -1,28 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ayurvedabook/appdraweruser.dart';
-import 'bookappointment.dart';
+import 'MODEL/MODELDOCTOR.dart';
 
 
-List<String> doctors = [
-  'Dr.Vinay',
-  'Dr. Akash S',
-  'Dr. Amal ',
-  'Dr. Ajay ',
-  'Dr. Paul ',
-
-
-
-
-];
-
-List<String> specailization =[
-  'Orthopedics',
-  'Pediatrics',
-  'Internal medicine',
-  'Dermatology',
-  'Psychiatry',
-
-];
 
 
 class Booking extends StatefulWidget {
@@ -33,7 +13,8 @@ class Booking extends StatefulWidget {
 }
 
 class _BookingState extends State<Booking> {
-  void _showModalBottomSheet(BuildContext context) {
+  List<DoctorDetails> doctorDetailsList = [];
+  void bookmenu() {
     DateTime selectedDate = DateTime.now();
     TimeOfDay selectedTime = TimeOfDay.now();
 
@@ -101,6 +82,17 @@ class _BookingState extends State<Booking> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fetchDoctorDetails(); // Call the method to fetch doctor details
+  }
+  Future<void> fetchDoctorDetails() async {
+    ReturnValue returnValue = ReturnValue();
+    List<DoctorDetails> fetchedDetails = await returnValue.fetchProductss();
+    setState(() {
+      doctorDetailsList = fetchedDetails;
+    });
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -127,36 +119,45 @@ class _BookingState extends State<Booking> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: doctors.length,
+                shrinkWrap: true,
+                itemCount: doctorDetailsList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      _showModalBottomSheet(context); // Show the modal bottom sheet
-                    },
+                  DoctorDetails doctor = doctorDetailsList[index];
+                  return Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
                     child: ListTile(
                       leading: const Icon(Icons.health_and_safety_outlined),
                       trailing: TextButton(
                         onPressed: () {
-                          _showModalBottomSheet(context); // Show the modal bottom sheet
+                          bookmenu();
+
+
                         },
-                        child: Text('BOOK'),
-                      ),
-                      title: Text(doctors[index]),
-                      subtitle: Align(
-                        alignment: Alignment.topLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(specailization[index]),
-                            Text('Available time'),
-                          ],
+                        child: const Text(
+                          "BOOK",
+                          style: TextStyle(color: Colors.green, fontSize: 15),
                         ),
                       ),
+                      title: Text(doctor.doctorname, style: TextStyle(fontWeight: FontWeight.bold),),//used to print the doctorname
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(doctor.doctorspecialization),
+                          Text('Experience: ${doctor.doctorexperience} years'),
+                          Text('Availability: ${doctor.doctoravailabledays}'),
+                          Text('Available Time: ${doctor.availabltime}'),
+                          // Add more subtitles here
+                        ],
+                      ),
+                      // subtitle: Text(doctor.doctorspecialization),//used to print doctor speccialization
+
+
                     ),
                   );
                 },
               ),
-            ),
+
+            )
           ],
         ),
       ),
